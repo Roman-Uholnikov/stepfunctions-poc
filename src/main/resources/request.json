@@ -1,0 +1,137 @@
+{
+  "topic": "seo",
+  "url": "https://www.conductor.com/",
+  "insights": [
+    {
+      "name": "META_DESCRIPTIONS_TOP",
+      "sources": [
+        "semrush-phrase-related",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTION_AND_TITLE_RECOMMENDED",
+      "sources": [
+        "html-collector-meta",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "RESULT_TYPE_INFO",
+      "sources": [
+        "semrush-phrase-organic"
+      ]
+    },
+    {
+      "name": "RELATED_KEYWORD",
+      "sources": [
+        "semrush-phrase-related"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTIONS_TOP",
+      "sources": [
+        "semrush-phrase-related",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTION_AND_TITLE_RECOMMENDED",
+      "sources": [
+        "html-collector-meta",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "RESULT_TYPE_INFO",
+      "sources": [
+        "semrush-phrase-organic"
+      ]
+    },
+    {
+      "name": "RELATED_KEYWORD",
+      "sources": [
+        "semrush-phrase-related"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTIONS_TOP",
+      "sources": [
+        "semrush-phrase-related",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTION_AND_TITLE_RECOMMENDED",
+      "sources": [
+        "html-collector-meta",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "RESULT_TYPE_INFO",
+      "sources": [
+        "semrush-phrase-organic"
+      ]
+    },
+    {
+      "name": "RELATED_KEYWORD",
+      "sources": [
+        "semrush-phrase-related"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTIONS_TOP",
+      "sources": [
+        "semrush-phrase-related",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTION_AND_TITLE_RECOMMENDED",
+      "sources": [
+        "html-collector-meta",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "RESULT_TYPE_INFO",
+      "sources": [
+        "semrush-phrase-organic"
+      ]
+    },
+    {
+      "name": "RELATED_KEYWORD",
+      "sources": [
+        "semrush-phrase-related"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTIONS_TOP",
+      "sources": [
+        "semrush-phrase-related",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "META_DESCRIPTION_AND_TITLE_RECOMMENDED",
+      "sources": [
+        "html-collector-meta",
+        "html-collector-title"
+      ]
+    },
+    {
+      "name": "RESULT_TYPE_INFO",
+      "sources": [
+        "semrush-phrase-organic"
+      ]
+    },
+    {
+      "name": "RELATED_KEYWORD",
+      "sources": [
+        "semrush-phrase-related"
+      ]
+    }
+  ]
+}
+

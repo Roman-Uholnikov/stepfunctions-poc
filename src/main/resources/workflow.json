@@ -1,0 +1,131 @@
+{
+  "Comment": "Workflow to orchestrate content insights.",
+  "StartAt": "Init flow",
+  "States": {
+    "Init flow": {
+      "Type": "Pass",
+      "ResultPath": "$",
+      "Next": "Calculate Insight"
+    },
+    "Calculate Insight": {
+      "Type": "Map",
+      "Next": "Finishing flow",
+      "ItemsPath": "$.insights",
+      "Parameters": {
+        "topic.$": "$.topic",
+        "url.$": "$.url",
+        "insight.$": "$$.Map.Item.Value"
+      },
+      "Iterator": {
+        "StartAt": "Select type of Insight",
+        "States": {
+          "Select type of Insight": {
+            "Type": "Choice",
+            "Choices": [
+              {
+                "Variable": "$.insight.name",
+                "StringEquals": "META_DESCRIPTIONS_TOP",
+                "Next": "Data preparation"
+              },
+              {
+                "Variable": "$.insight.name",
+                "StringEquals": "META_DESCRIPTION_AND_TITLE_RECOMMENDED",
+                "Next": "Html facts extractor"
+              },
+              {
+                "Variable": "$.insight.name",
+                "StringEquals": "RESULT_TYPE_INFO",
+                "Next": "Html collection"
+              },
+              {
+                "Variable": "$.insight.name",
+                "StringEquals": "RELATED_KEYWORD",
+                "Next": "Semrush data extraction"
+              }
+            ],
+            "Default": "Semrush data extraction"
+          },
+          "Insight calculation": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::sqs:sendMessage.waitForTaskToken",
+            "ResultPath": "$",
+            "Parameters": {
+              "QueueUrl": "https://sqs.eu-central-1.amazonaws.com/241646002679/insight-constructor",
+              "MessageBody": {
+                "insightRequest.$": "$",
+                "token.$": "$$.Task.Token",
+                "request.$": "$$.Execution.Input"
+              }
+            },
+            "End": true
+          },
+          "Data preparation": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::sqs:sendMessage.waitForTaskToken",
+            "ResultPath": "$",
+            "Parameters": {
+              "QueueUrl": "https://sqs.eu-central-1.amazonaws.com/241646002679/insight-constructor",
+              "MessageBody": {
+                "insightRequest.$": "$",
+                "token.$": "$$.Task.Token",
+                "request.$": "$$.Execution.Input"
+              }
+            },
+            "Next": "Insight calculation"
+          },
+          "Html facts extractor": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::sqs:sendMessage.waitForTaskToken",
+            "ResultPath": "$",
+            "Parameters": {
+              "QueueUrl": "https://sqs.eu-central-1.amazonaws.com/241646002679/html-collector-title",
+              "MessageBody": {
+                "insightRequest.$": "$",
+                "token.$": "$$.Task.Token",
+                "request.$": "$$.Execution.Input"
+              }
+            },
+            "Next": "Data preparation"
+          },
+          "Html collection": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::sqs:sendMessage.waitForTaskToken",
+            "ResultPath": "$",
+            "Parameters": {
+              "QueueUrl": "https://sqs.eu-central-1.amazonaws.com/241646002679/html-collector-meta",
+              "MessageBody": {
+                "insightRequest.$": "$",
+                "token.$": "$$.Task.Token",
+                "request.$": "$$.Execution.Input"
+              }
+            },
+            "Next": "Html facts extractor"
+          },
+          "Semrush data extraction": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::sqs:sendMessage.waitForTaskToken",
+            "ResultPath": "$",
+            "Parameters": {
+              "QueueUrl": "https://sqs.eu-central-1.amazonaws.com/241646002679/insight-constructor",
+              "MessageBody": {
+                "insightRequest.$": "$",
+                "token.$": "$$.Task.Token",
+                "request.$": "$$.Execution.Input"
+              }
+            },
+            "Next": "Data preparation"
+          }
+        }
+      }
+    },
+    "Finishing flow": {
+      "Type": "Pass",
+      "Result": "Finishing: flow",
+      "Next": "Finish"
+    },
+    "Finish": {
+      "Type": "Succeed"
+    }
+  }
+}
+
